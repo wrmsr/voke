@@ -84,10 +84,10 @@
 (sm/defn update-position :- Entity
   [entity :- Entity]
   (-> entity
-      (update-in [:shape :x]
+      (update-in [:shape :center :x]
                  (fn [x]
                    (+ x (safe-get-in entity [:motion :velocity :x]))))
-      (update-in [:shape :y]
+      (update-in [:shape :center :y]
                  (fn [y]
                    (+ y (safe-get-in entity [:motion :velocity :y]))))))
 
@@ -108,7 +108,7 @@
                                                            :entity       entity
                                                            :axis         axis
                                                            :new-position (safe-get-in moved-entity
-                                                                                      [:shape axis])
+                                                                                      [:shape :center axis])
                                                            :new-velocity (safe-get-in moved-entity
                                                                                       [:motion :velocity axis])
                                                            :all-entities entities}))))))}})

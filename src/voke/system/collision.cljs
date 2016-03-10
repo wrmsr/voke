@@ -5,13 +5,13 @@
             [voke.schemas :refer [Entity Event System]])
   (:require-macros [schema.core :as sm]))
 
-(defn left-edge-x [rect] (- (rect :x)
+(defn left-edge-x [rect] (- (-> rect :center :x)
                             (/ (rect :width) 2)))
-(defn right-edge-x [rect] (+ (rect :x)
+(defn right-edge-x [rect] (+ (-> rect :center :x)
                              (/ (rect :width) 2)))
 (defn top-edge-y [rect] (- (rect :y)
                            (/ (rect :height) 2)))
-(defn bottom-edge-y [rect] (+ (rect :y)
+(defn bottom-edge-y [rect] (+ (-> rect :center :y)
                               (/ (rect :height) 2)))
 
 (sm/defn shapes-collide? :- s/Bool
